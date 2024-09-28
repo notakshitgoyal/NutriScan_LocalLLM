@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Report</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('downloadBtn').onclick = function() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Set the font size
+                doc.setFontSize(10); // Adjust this value for desired font size
+                
+                // Get the report content
+                const reportContent = document.getElementById('reportContent').innerText;
+
+                // Split text into lines that fit within the specified width (190 in this case)
+                const textLines = doc.splitTextToSize(reportContent, 190);
+                const margin = 10; // margin from the edge
+                const pageHeight = doc.internal.pageSize.height;
+                let verticalOffset = margin; // starting position for text
+                
+                // Loop through each line and add to PDF, managing page breaks
+                for (let i = 0; i < textLines.length; i++) {
+                    if (verticalOffset + 10 > pageHeight - margin) { // Check if the line will go out of bounds
+                        doc.addPage(); // Add new page
+                        verticalOffset = margin; // Reset vertical offset for new page
+                    }
+                    doc.text(textLines[i], margin, verticalOffset); // Add the line
+                    verticalOffset += 6; // Adjusted spacing for next line (decreased from 10 to 6)
+                }
+
+                doc.save('report.pdf'); // Save the PDF
+            };
+        };
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Generated Report</h1>
+        <div class="card">
+            <div class="card-body">
+                <pre id="reportContent">{{ report }}</pre>
+            </div>
+        </div>
+        <button id="downloadBtn" class="btn btn-success mt-4">Download as PDF</button>
+        <a href="/" class="btn btn-primary mt-4">Back to Home</a>
+    </div>
+</body>
+</html>

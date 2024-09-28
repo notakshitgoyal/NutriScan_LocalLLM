@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        h1 {
+            color: #343a40; /* Dark gray text */
+        }
+        .table {
+            background-color: white; /* White background for table */
+            border-radius: 0.5rem; /* Rounded corners */
+            overflow: hidden; /* Ensure table does not overflow */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Input Food Information</h1>
+        
+        <!-- Display Parsed Data -->
+        
+        {% if data and data.candidates and data.candidates[0].content and data.candidates[0].content.parts %}
+            {% set content = data.candidates[0].content.parts[0] %}
+            {% if content.text %}
+                <pre class="bg-light p-3 mt-3">{{ content.text }}</pre>
+            {% else %}
+                <p>Parsed data structure is not as expected.</p>
+            {% endif %}
+        {% else %}
+            <p>No parsed data available.</p>
+        {% endif %}
+
+        <!-- OCR Results -->
+        <h2>OCR Results</h2>
+        <ul>
+            {% for key, value in ocr_results.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Disease and Allergies Input -->
+        <h2>Health Information</h2>
+        <form method="POST" action="/generate-report">
+            <div class="mb-3">
+                <label for="disease" class="form-label">Enter Your Disease</label>
+                <input type="text" class="form-control" id="disease" name="disease" placeholder="e.g., Diabetes">
+            </div>
+            <div class="mb-3">
+                <label for="allergies" class="form-label">Enter Your Allergies</label>
+                <input type="text" class="form-control" id="allergies" name="allergies" placeholder="e.g., Peanuts">
+            </div>
+            
+            <!-- Generate Report Button -->
+            <button type="submit" class="btn btn-primary mt-3">Generate Report</button>
+        </form>
+    </div>
+</body>
+</html>

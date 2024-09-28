@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriScan - Your Personal Food Safety Checker</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .shadcn-card {
+        @apply bg-white rounded-lg border border-gray-200 shadow-sm;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+
+      .shadcn-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      .shadcn-button {
+        @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+      }
+
+      .shadcn-button-primary {
+        @apply bg-primary text-primary-foreground hover:bg-primary/90;
+      }
+
+      .shadcn-input {
+        @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+      }
+
+      .bg-primary {
+        @apply bg-blue-600;
+      }
+
+      .text-primary-foreground {
+        @apply text-white;
+      }
+
+      .hover\:bg-primary\/90:hover {
+        @apply hover:bg-blue-700;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .animate-fadeIn {
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .animate-slideUp {
+        animation: slideUp 0.5s ease-out;
+      }
+
+      .animate-delay-100 {
+        animation-delay: 100ms;
+      }
+      .animate-delay-200 {
+        animation-delay: 200ms;
+      }
+      .animate-delay-300 {
+        animation-delay: 300ms;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <header class="text-center mb-12 animate-fadeIn">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">NUTRISCAN</h1>
+        <p class="text-xl text-gray-600">
+          Your Personal Prescription-Based Food Safety Checker
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="shadcn-card p-6 animate-slideUp">
+          <div class="flex items-center mb-4">
+            <svg
+              class="w-6 h-6 text-green-500 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <h2 class="text-xl font-semibold text-gray-800">
+              Scan Prescriptions
+            </h2>
+          </div>
+          <p class="text-gray-600">
+            Easily upload and scan your prescription for instant analysis.
+          </p>
+        </div>
+
+        <div class="shadcn-card p-6 animate-slideUp animate-delay-100">
+          <div class="flex items-center mb-4">
+            <svg
+              class="w-6 h-6 text-yellow-500 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
+            </svg>
+            <h2 class="text-xl font-semibold text-gray-800">Get Food Alerts</h2>
+          </div>
+          <p class="text-gray-600">
+            Receive personalized alerts about foods to avoid based on your
+            medications.
+          </p>
+        </div>
+
+        <div class="shadcn-card p-6 animate-slideUp animate-delay-200">
+          <div class="flex items-center mb-4">
+            <svg
+              class="w-6 h-6 text-blue-500 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              ></path>
+            </svg>
+            <h2 class="text-xl font-semibold text-gray-800">
+              Personalized Advice
+            </h2>
+          </div>
+          <p class="text-gray-600">
+            Get customized suggestions for maintaining a healthy diet with your
+            medications.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="max-w-md mx-auto animate-slideUp animate-delay-300 flex flex-col justify-center items-center gap-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-scan text-green-500"
+        >
+          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+        </svg>
+        <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">
+          Upload Your Prescription
+        </h2>
+        <form
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+          class="space-y-4"
+        >
+          <div class="shadcn-card p-6">
+            <label
+              for="file"
+              class="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Choose a file or drag it here
+            </label>
+            <div
+              id="dropZone"
+              class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md transition-all duration-300"
+            >
+              <div class="space-y-1 text-center">
+                <svg
+                  class="mx-auto h-12 w-12 text-gray-400"
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div class="flex text-sm text-gray-600">
+                  <label
+                    for="file"
+                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  >
+                    <span>Upload a file</span>
+                    <input
+                      id="file"
+                      name="file"
+                      type="file"
+                      class="sr-only"
+                      accept=".pdf,image/*"
+                      required
+                    />
+                  </label>
+                  <p class="pl-1">or drag and drop</p>
+                </div>
+                <p class="text-xs text-gray-500">PDF or Image up to 10MB</p>
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="shadcn-button bg-green-600 text-white hover:bg-green-700 w-full py-2 px-4 group rounded-full"
+          >
+            Upload and Scan
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById("file");
+      const dropZone = document.getElementById("dropZone");
+
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      function highlight(e) {
+        dropZone.classList.add("border-blue-300", "bg-blue-50");
+      }
+
+      function unhighlight(e) {
+        dropZone.classList.remove("border-blue-300", "bg-blue-50");
+      }
+
+      dropZone.addEventListener("drop", handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+      }
+    </script>
+  </body>
+</html>
