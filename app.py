@@ -115,7 +115,7 @@ def continue_page():
             print(f"JSON decoding error: {e}")
             return "Invalid JSON data", 400
 
-    return render_template('continue.html', data=parsed_data)
+    return render_template('Input.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -179,7 +179,7 @@ def process_input():
         ocr_results['ingredients_text'] = ingredients_text
     
     session['food_name'] = ocr_results
-    return render_template('final_results.html', data=parsed_data, ocr_results=ocr_results)
+    return render_template('health_info.html', data=parsed_data, ocr_results=ocr_results)
 
 @app.route('/generate-report', methods=['POST'])
 def generate_report():

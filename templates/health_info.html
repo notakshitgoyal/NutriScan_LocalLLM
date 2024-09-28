@@ -22,20 +22,6 @@
 <body>
     <div class="container mt-5">
         <h1>Input Food Information</h1>
-        
-        <!-- Display Parsed Data -->
-        
-        {% if data and data.candidates and data.candidates[0].content and data.candidates[0].content.parts %}
-            {% set content = data.candidates[0].content.parts[0] %}
-            {% if content.text %}
-                <pre class="bg-light p-3 mt-3">{{ content.text }}</pre>
-            {% else %}
-                <p>Parsed data structure is not as expected.</p>
-            {% endif %}
-        {% else %}
-            <p>No parsed data available.</p>
-        {% endif %}
-
         <!-- OCR Results -->
         <h2>OCR Results</h2>
         <ul>
